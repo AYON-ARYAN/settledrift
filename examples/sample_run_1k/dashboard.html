@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SettleDrift · 1,000-transaction run</title>
+<style>
+  :root {
+    --bg: #0b0f14; --panel: #12181f; --border: #1f2833; --text: #e6edf3;
+    --muted: #8b98a5; --accent: #4fd1c5; --gold: #d4af37; --danger: #e5534b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2.5rem 1.5rem 4rem; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 0.25rem; }
+  .subtitle { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-bottom: 2.5rem; }
+  .metric-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; }
+  .metric-value { font-size: 1.6rem; font-weight: 700; color: var(--accent);
+                    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .metric-value-long { font-size: 1.15rem; }
+  .metric-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+  .metric-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.35rem; }
+  h2 { font-size: 1.05rem; margin: 0 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.72rem;
+        text-transform: uppercase; letter-spacing: 0.04em; padding: 0.4rem 0.6rem; }
+  td { padding: 0.55rem 0.6rem; border-top: 1px solid var(--border); vertical-align: middle; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.cls-name { white-space: nowrap; }
+  td.mono { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.78rem; color: var(--muted); }
+  td.reason { color: var(--muted); font-size: 0.8rem; }
+  td.empty { text-align: center; color: var(--muted); padding: 1.5rem; }
+  .bar-track { display: inline-block; width: 90px; height: 6px; background: var(--border);
+                border-radius: 3px; overflow: hidden; vertical-align: middle; margin-right: 0.5rem; }
+  .bar-fill { height: 100%; background: var(--accent); }
+  .pct { font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.72rem;
+            font-weight: 600; background: rgba(229,83,75,0.15); color: var(--danger); }
+  .funnel-row { display: grid; grid-template-columns: 260px 1fr 50px; align-items: center; gap: 0.75rem;
+                 padding: 0.5rem 0; font-size: 0.85rem; }
+  .funnel-label { color: var(--muted); }
+  .funnel-count { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .funnel-row .bar-track { width: 100%; margin-right: 0; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: 0.75rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SettleDrift · 1,000-transaction run</h1>
+  <p class="subtitle">Deterministic ledger/settlement reconciliation, with a bounded local-LLM agent for the genuinely ambiguous remainder.</p>
+
+  <div class="metrics">
+    
+    <div class="metric-card">
+      <div class="metric-value">94.0%</div>
+      <div class="metric-label">Match rate</div>
+      <div class="metric-sub">940/1000 orders</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value">100.0%</div>
+      <div class="metric-label">Classification accuracy</div>
+      <div class="metric-sub">vs. ground truth</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value metric-value-long">₹11,450,635.93</div>
+      <div class="metric-label">₹ Reconciled</div>
+      
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value">150</div>
+      <div class="metric-label">LLM calls needed</div>
+      <div class="metric-sub">15% of 1000 orders</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value">60</div>
+      <div class="metric-label">Sent to human review</div>
+      <div class="metric-sub">true exceptions only</div>
+    </div>
+  </div>
+
+  <h2>Resolution funnel</h2>
+  
+        <div class="funnel-row">
+          <div class="funnel-label">Total orders</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+          <div class="funnel-count">1000</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Deterministic clean (exact + tolerance)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:62.0%"></div></div>
+          <div class="funnel-count">620</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Deterministic drift-class shortcuts (R2/R3)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:23.0%"></div></div>
+          <div class="funnel-count">230</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Agent-investigated (150 LLM calls)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div>
+          <div class="funnel-count">150</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Auto-resolved by confidence gate</div>
+          <div class="bar-track"><div class="bar-fill" style="width:32.0%"></div></div>
+          <div class="funnel-count">320</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Sent to human review</div>
+          <div class="bar-track"><div class="bar-fill" style="width:6.0%"></div></div>
+          <div class="funnel-count">60</div>
+        </div>
+
+  <h2>Per-class precision / recall (vs. ground truth)</h2>
+  <table>
+    <thead><tr><th>Class</th><th class="num">True</th><th class="num">Predicted</th><th class="num">Correct</th><th>Precision</th><th>Recall</th></tr></thead>
+    <tbody>
+      
+        <tr>
+          <td class="cls-name">Clean match</td>
+          <td class="num">500</td>
+          <td class="num">500</td>
+          <td class="num">500</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R1 · Fee/GST rounding</td>
+          <td class="num">120</td>
+          <td class="num">120</td>
+          <td class="num">120</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R2 · Timing lag</td>
+          <td class="num">150</td>
+          <td class="num">150</td>
+          <td class="num">150</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R3 · Partial refund</td>
+          <td class="num">80</td>
+          <td class="num">80</td>
+          <td class="num">80</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R4 · Split settlement</td>
+          <td class="num">50</td>
+          <td class="num">50</td>
+          <td class="num">50</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R5 · Duplicate entry</td>
+          <td class="num">40</td>
+          <td class="num">40</td>
+          <td class="num">40</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R6 · Missing counterpart</td>
+          <td class="num">60</td>
+          <td class="num">60</td>
+          <td class="num">60</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h2>Exceptions — sent to human review</h2>
+  <table>
+    <thead><tr><th>Order ID</th><th>Predicted class</th><th class="num">Confidence</th><th>Reason</th></tr></thead>
+    <tbody>
+      
+        <tr>
+          <td class="mono">order_02PTGFG7YUN5PN</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.80</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_0FMVT9UR72K2A2</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_0ZCT33JQ9ZDJ4Q</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_19DDGBNAVYT326</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_27J46BYBD50N7C</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_2C492T45D3K9SQ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_2CXE7Q2X43ZCFS</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_3RWXECU429B135</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.80</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_3YQRLV1H97BJB9</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_474WUJHKE8D8NA</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_4PXUSWBNLJV9A0</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_7P3UNBA4TTQMYN</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_86ATAU4S74USN9</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_884TJJ23R8530A</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_8AEBZ1PTKPACSQ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_A5LJXXPUDS7DQD</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_C4DA3J3XUM2ETT</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_CJRNLW516NBKNJ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_CWV4X4Y7YT9M6L</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_E98TYAFHJJMP8F</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_ECUGUT5LZKBG1M</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_EJNK6GZ68UPXXA</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_FUPLDW7X3AB7G8</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_G3K844FS2BBTKC</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_GQKDTAM5QW3Z7E</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_GTTBS880NY5ET4</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_H9LY0848A2KZSJ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_JHZELNHU0MYMAQ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_LCBX8UN3BT51EP</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_LDYXNRQHMGX52J</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.90</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_M8F9JH1HPS09ZW</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_MBN01F1FE479P2</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_MGN218XCGNH6Q2</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_MN8EZRS1JUP8GP</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_MRGQ717ZEWYXJ9</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_N0Q7MHAHCTRBEQ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_NL93SZSDLYQEMA</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_NSPU0AK70RMFAJ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_NV8KGJCUQ1VZJK</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_P2DTR71MTENZA1</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_PNX2P2UJXPE4X0</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_Q08X3ESEYS68KQ</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_Q5GNYVFX03XR8N</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_R6TKZKDXC1GQPB</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_S3ZL34CAWBPP07</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_SCCVK5XN0RH5BY</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_SCYNBQ21WDCY7X</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_UVS2K5WRTJDBXW</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_VAJSFLS8EZUJPG</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_VCXZLLLQPV5M01</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_VWALWRJRCJ6QPF</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_W3ZJEHJJ16ZY27</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_WLL58JYNBNPJS4</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_WNKX6PES68E3Y2</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_WTTZ0Q6V10ZB1L</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_XTWA8XV9H23SFB</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_Z67MX1F9WC0LDH</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_ZJS1V3WX03SGX3</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_ZK7CLY3L0ZCPFR</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_ZTUVFYD8E4MU39</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <footer>Generated by settledrift · 1000 orders · 150 LLM calls · 230 deterministic drift-class shortcuts</footer>
+</div>
+</body>
+</html>

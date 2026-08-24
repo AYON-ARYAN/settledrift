@@ -1,0 +1,425 @@
+{
+  "total_orders": 1000,
+  "clean_exact": 500,
+  "clean_tolerance": 120,
+  "unresolved_by_matcher": 380,
+  "agent_auto_resolved": 320,
+  "agent_needs_review": 60,
+  "match_rate": 0.94,
+  "rupees_reconciled": 11450635.93,
+  "overall_classification_accuracy": 1.0,
+  "per_class": {
+    "R1": {
+      "predicted_count": 120,
+      "true_count": 120,
+      "correct": 120,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R2": {
+      "predicted_count": 150,
+      "true_count": 150,
+      "correct": 150,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R3": {
+      "predicted_count": 80,
+      "true_count": 80,
+      "correct": 80,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R4": {
+      "predicted_count": 50,
+      "true_count": 50,
+      "correct": 50,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R5": {
+      "predicted_count": 40,
+      "true_count": 40,
+      "correct": 40,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R6": {
+      "predicted_count": 60,
+      "true_count": 60,
+      "correct": 60,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "CLEAN": {
+      "predicted_count": 500,
+      "true_count": 500,
+      "correct": 500,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "exception_count": 60,
+  "exceptions": [
+    {
+      "order_id": "order_02PTGFG7YUN5PN",
+      "predicted_class": "R6",
+      "confidence": 0.8,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_0FMVT9UR72K2A2",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_0ZCT33JQ9ZDJ4Q",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_19DDGBNAVYT326",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_27J46BYBD50N7C",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_2C492T45D3K9SQ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_2CXE7Q2X43ZCFS",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_3RWXECU429B135",
+      "predicted_class": "R6",
+      "confidence": 0.8,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_3YQRLV1H97BJB9",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_474WUJHKE8D8NA",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_4PXUSWBNLJV9A0",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_7P3UNBA4TTQMYN",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_86ATAU4S74USN9",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_884TJJ23R8530A",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_8AEBZ1PTKPACSQ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_A5LJXXPUDS7DQD",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_C4DA3J3XUM2ETT",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_CJRNLW516NBKNJ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_CWV4X4Y7YT9M6L",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_E98TYAFHJJMP8F",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_ECUGUT5LZKBG1M",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_EJNK6GZ68UPXXA",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_FUPLDW7X3AB7G8",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_G3K844FS2BBTKC",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_GQKDTAM5QW3Z7E",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_GTTBS880NY5ET4",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_H9LY0848A2KZSJ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_JHZELNHU0MYMAQ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_LCBX8UN3BT51EP",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_LDYXNRQHMGX52J",
+      "predicted_class": "R6",
+      "confidence": 0.9,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_M8F9JH1HPS09ZW",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_MBN01F1FE479P2",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_MGN218XCGNH6Q2",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_MN8EZRS1JUP8GP",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_MRGQ717ZEWYXJ9",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_N0Q7MHAHCTRBEQ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_NL93SZSDLYQEMA",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_NSPU0AK70RMFAJ",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_NV8KGJCUQ1VZJK",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_P2DTR71MTENZA1",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_PNX2P2UJXPE4X0",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_Q08X3ESEYS68KQ",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_Q5GNYVFX03XR8N",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_R6TKZKDXC1GQPB",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_S3ZL34CAWBPP07",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_SCCVK5XN0RH5BY",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_SCYNBQ21WDCY7X",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_UVS2K5WRTJDBXW",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_VAJSFLS8EZUJPG",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_VCXZLLLQPV5M01",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_VWALWRJRCJ6QPF",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_W3ZJEHJJ16ZY27",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_WLL58JYNBNPJS4",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_WNKX6PES68E3Y2",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_WTTZ0Q6V10ZB1L",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_XTWA8XV9H23SFB",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_Z67MX1F9WC0LDH",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_ZJS1V3WX03SGX3",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_ZK7CLY3L0ZCPFR",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_ZTUVFYD8E4MU39",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    }
+  ]
+}

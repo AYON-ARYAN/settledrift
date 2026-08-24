@@ -6,7 +6,9 @@ from pathlib import Path
 import typer
 
 from settledrift.agent.providers import parse_provider
+from settledrift.dashboard import write_dashboard
 from settledrift.data.generate import generate
+from settledrift.journal import read_journal
 from settledrift.pipeline import run_reconciliation
 
 app = typer.Typer(add_completion=False)
@@ -53,7 +55,11 @@ def reconcile(
     with open(out_dir / "report.json", "w") as f:
         json.dump(report_dict, f, indent=2)
 
+    journal_rows = read_journal(out_dir / "journal.jsonl")
+    write_dashboard(report_dict, journal_rows, out_dir / "dashboard.html", title=f"SettleDrift · {data_dir.name}")
+
     typer.echo(json.dumps(report_dict, indent=2))
+    typer.echo(f"\nDashboard: {out_dir / 'dashboard.html'}")
 
 
 @app.command()
@@ -64,6 +70,19 @@ def report(out_dir: Path = typer.Option(Path("runs/out"), "--out")):
         typer.echo(f"No report at {path}. Run `settledrift reconcile` first.", err=True)
         raise typer.Exit(1)
     typer.echo(path.read_text())
+
+
+@app.command()
+def dashboard(out_dir: Path = typer.Option(Path("runs/out"), "--out"), title: str = typer.Option("SettleDrift Run", "--title")):
+    """(Re)generate dashboard.html from an existing report.json + journal.jsonl."""
+    report_path = out_dir / "report.json"
+    if not report_path.exists():
+        typer.echo(f"No report at {report_path}. Run `settledrift reconcile` first.", err=True)
+        raise typer.Exit(1)
+    report_dict = json.loads(report_path.read_text())
+    journal_rows = read_journal(out_dir / "journal.jsonl")
+    write_dashboard(report_dict, journal_rows, out_dir / "dashboard.html", title=title)
+    typer.echo(f"Dashboard: {out_dir / 'dashboard.html'}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SettleDrift · 120-transaction run</title>
+<style>
+  :root {
+    --bg: #0b0f14; --panel: #12181f; --border: #1f2833; --text: #e6edf3;
+    --muted: #8b98a5; --accent: #4fd1c5; --gold: #d4af37; --danger: #e5534b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2.5rem 1.5rem 4rem; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 0.25rem; }
+  .subtitle { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-bottom: 2.5rem; }
+  .metric-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; }
+  .metric-value { font-size: 1.6rem; font-weight: 700; color: var(--accent);
+                    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .metric-value-long { font-size: 1.15rem; }
+  .metric-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+  .metric-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.35rem; }
+  h2 { font-size: 1.05rem; margin: 0 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.72rem;
+        text-transform: uppercase; letter-spacing: 0.04em; padding: 0.4rem 0.6rem; }
+  td { padding: 0.55rem 0.6rem; border-top: 1px solid var(--border); vertical-align: middle; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.cls-name { white-space: nowrap; }
+  td.mono { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.78rem; color: var(--muted); }
+  td.reason { color: var(--muted); font-size: 0.8rem; }
+  td.empty { text-align: center; color: var(--muted); padding: 1.5rem; }
+  .bar-track { display: inline-block; width: 90px; height: 6px; background: var(--border);
+                border-radius: 3px; overflow: hidden; vertical-align: middle; margin-right: 0.5rem; }
+  .bar-fill { height: 100%; background: var(--accent); }
+  .pct { font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.72rem;
+            font-weight: 600; background: rgba(229,83,75,0.15); color: var(--danger); }
+  .funnel-row { display: grid; grid-template-columns: 260px 1fr 50px; align-items: center; gap: 0.75rem;
+                 padding: 0.5rem 0; font-size: 0.85rem; }
+  .funnel-label { color: var(--muted); }
+  .funnel-count { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .funnel-row .bar-track { width: 100%; margin-right: 0; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: 0.75rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SettleDrift · 120-transaction run</h1>
+  <p class="subtitle">Deterministic ledger/settlement reconciliation, with a bounded local-LLM agent for the genuinely ambiguous remainder.</p>
+
+  <div class="metrics">
+    
+    <div class="metric-card">
+      <div class="metric-value">94.2%</div>
+      <div class="metric-label">Match rate</div>
+      <div class="metric-sub">113/120 orders</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value">100.0%</div>
+      <div class="metric-label">Classification accuracy</div>
+      <div class="metric-sub">vs. ground truth</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value metric-value-long">₹1,336,382.17</div>
+      <div class="metric-label">₹ Reconciled</div>
+      
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value">18</div>
+      <div class="metric-label">LLM calls needed</div>
+      <div class="metric-sub">15% of 120 orders</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-value">7</div>
+      <div class="metric-label">Sent to human review</div>
+      <div class="metric-sub">true exceptions only</div>
+    </div>
+  </div>
+
+  <h2>Resolution funnel</h2>
+  
+        <div class="funnel-row">
+          <div class="funnel-label">Total orders</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+          <div class="funnel-count">120</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Deterministic clean (exact + tolerance)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:61.7%"></div></div>
+          <div class="funnel-count">74</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Deterministic drift-class shortcuts (R2/R3)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:23.3%"></div></div>
+          <div class="funnel-count">28</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Agent-investigated (18 LLM calls)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div>
+          <div class="funnel-count">18</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Auto-resolved by confidence gate</div>
+          <div class="bar-track"><div class="bar-fill" style="width:32.5%"></div></div>
+          <div class="funnel-count">39</div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-label">Sent to human review</div>
+          <div class="bar-track"><div class="bar-fill" style="width:5.8%"></div></div>
+          <div class="funnel-count">7</div>
+        </div>
+
+  <h2>Per-class precision / recall (vs. ground truth)</h2>
+  <table>
+    <thead><tr><th>Class</th><th class="num">True</th><th class="num">Predicted</th><th class="num">Correct</th><th>Precision</th><th>Recall</th></tr></thead>
+    <tbody>
+      
+        <tr>
+          <td class="cls-name">Clean match</td>
+          <td class="num">60</td>
+          <td class="num">60</td>
+          <td class="num">60</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R1 · Fee/GST rounding</td>
+          <td class="num">14</td>
+          <td class="num">14</td>
+          <td class="num">14</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R2 · Timing lag</td>
+          <td class="num">18</td>
+          <td class="num">18</td>
+          <td class="num">18</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R3 · Partial refund</td>
+          <td class="num">10</td>
+          <td class="num">10</td>
+          <td class="num">10</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R4 · Split settlement</td>
+          <td class="num">6</td>
+          <td class="num">6</td>
+          <td class="num">6</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R5 · Duplicate entry</td>
+          <td class="num">5</td>
+          <td class="num">5</td>
+          <td class="num">5</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+
+        <tr>
+          <td class="cls-name">R6 · Missing counterpart</td>
+          <td class="num">7</td>
+          <td class="num">7</td>
+          <td class="num">7</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="pct">100.0%</span></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h2>Exceptions — sent to human review</h2>
+  <table>
+    <thead><tr><th>Order ID</th><th>Predicted class</th><th class="num">Confidence</th><th>Reason</th></tr></thead>
+    <tbody>
+      
+        <tr>
+          <td class="mono">order_22L29MJBZJFL3P</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_4CKAF9839DL8V5</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_54AWTVW783SWDM</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_8NA94MFXX0MK3J</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_CSQMPL68J7ZA97</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_CT1QJZ3URAZFBT</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">0.95</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+
+        <tr>
+          <td class="mono">order_YERJL77E0BPD5F</td>
+          <td><span class="badge badge-R6">R6</span></td>
+          <td class="num">1.00</td>
+          <td class="reason">R6 is never auto-resolvable</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <footer>Generated by settledrift · 120 orders · 18 LLM calls · 28 deterministic drift-class shortcuts</footer>
+</div>
+</body>
+</html>
