@@ -1,0 +1,122 @@
+{"event": "run_start", "ledger_path": "runs/data/ledger.csv", "settlement_path": "runs/data/settlement.csv", "unresolved_count": 46}
+{"event": "clean_match", "order_id": "order_0J0J9Z0TNTW335", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_14BGFLHBL5ZRAB", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_1HMGF1949VG0MT", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_2U33RTJKKB4CNR", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_5N00S8B51RHRGS", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_6PQQ9981KU5CEA", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_72UWAD4YAG3W4F", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_7BS1TTD2XKQ7GW", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_8A9FNACWFTQRA6", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_8HHKKFDSLHB03E", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_8QWA5SWTTLNPQN", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_9R9W5EY7FB01H8", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_A7SLAFNHSYRN9N", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_ALEPB1VBZ9ZY2M", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_B9XQ3TESW0731L", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_BUY9HP154QQ3L6", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_C6CFDXP8GFYGJB", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_CF8F792RN2BJZL", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_CJ105GESKV3H17", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_DFMZ80SBQMSQB1", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_ES8M8LQ9Y0UV6L", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_EY88X3L1NN5040", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_HWBQTT846LRN6S", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_HZJ8R6CSVB4CWR", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_J5GZ2K07XYD9QS", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_JBP99VZP3YSXZV", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_JDXHVV9SEXHT9A", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_JGXHD6A7WS1ZJS", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_JZCJUMVKP17927", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_KR5HF9ZETYFDA3", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_LTPX0PYKK6ZVGA", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_LUKU01MKNSEMGM", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_M2QT36J46FV2TV", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_MGH1V55SWN3R0V", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_NBHP3N8BNDUJZ1", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_NP5Z855KY7D6ME", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_PQSNG671R2A1GX", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_PZ7ARSAQL3FXDG", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_Q4QL5CN1V8J1ZN", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_QF0AD8NCJBZJBF", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_QK5MMU5P1Y30A5", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_RJEKXSWP5T3NLA", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_RPTDNTZG1HLVVE", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_RUWS7T768RSP43", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_S7HFFVZAMLRY77", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_SK6ATLM3GB2BAM", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_T3P1Y5ELTP6CC0", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_T6375942SLUXEF", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_TYMG5T5QGXJM11", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_U820JZBNSNRY60", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_U9SG8EQ7BW25D5", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_UXDUBF7Y4S33FA", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_V8WR597BPUH8W1", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_WCY6LU8PAPTTK1", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_WGJL7P973ZRP35", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_XXLG3CZT88K2QT", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_Y1XEQGDECW9F5L", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_ZAF3519TAR3R1U", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_ZE42DQ3AV4SR4Z", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_ZTLM0XU96PAB0V", "kind": "exact"}
+{"event": "clean_match", "order_id": "order_1CQYLRS78YSW6P", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_75XLES848MM2UG", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_BVSM6YEW1455AQ", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_CJ3GVNP52UAAY2", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_G964MQYCWFXC2Y", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_JWUQXMSH464S0J", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_LCXDSP1MBBJD8U", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_SA829CS5DC3YFR", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_TBQNQ0BAN6LMDE", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_U3Q433668H6PA1", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_URPHMECC67YG74", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_VHMLLKBULTQAL2", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_WNL08TAYMECB8F", "kind": "tolerance"}
+{"event": "clean_match", "order_id": "order_Y6AYY9PGK8CTD3", "kind": "tolerance"}
+{"event": "deterministic_resolved", "order_id": "order_1V46DKWFAQSGM6", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_22L29MJBZJFL3P", "predicted_class": "R6", "confidence": 0.95, "reasoning": "No counterpart found on either side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.64}
+{"event": "deterministic_resolved", "order_id": "order_2SN7RU1XEUX1US", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 8d > 2d", "elapsed_s": 0.01}
+{"event": "investigated", "order_id": "order_3UW6J5VFPQGWF1", "predicted_class": "R4", "confidence": 1.0, "reasoning": "One ledger entry but two settlement rows.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.86}
+{"event": "deterministic_resolved", "order_id": "order_4AF1C04TYHGPEU", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 7d > 2d", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_4CKAF9839DL8V5", "predicted_class": "R6", "confidence": 1.0, "reasoning": "No counterpart found on the settlement side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.28}
+{"event": "deterministic_resolved", "order_id": "order_4N17H1DVVSA2FC", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_54AWTVW783SWDM", "predicted_class": "R6", "confidence": 1.0, "reasoning": "No counterpart found on the settlement side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.27}
+{"event": "investigated", "order_id": "order_8NA94MFXX0MK3J", "predicted_class": "R6", "confidence": 1.0, "reasoning": "No counterpart found on the settlement side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.27}
+{"event": "deterministic_resolved", "order_id": "order_8NQS2ZGDHXPJSC", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 3d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_9XCYB0SQQFNC2J", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 7d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_AKKUPJDRSP2RB3", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 7d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_C0AU6PM8PB4DL5", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 5d > 2d", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_CAQ4119YMR309G", "predicted_class": "R5", "confidence": 1.0, "reasoning": "Duplicate booking on the ledger side.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.73}
+{"event": "deterministic_resolved", "order_id": "order_CRKJDN83RGDK88", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 5d > 2d", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_CSQMPL68J7ZA97", "predicted_class": "R6", "confidence": 0.95, "reasoning": "No counterpart found on the settlement side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.31}
+{"event": "investigated", "order_id": "order_CT1QJZ3URAZFBT", "predicted_class": "R6", "confidence": 0.95, "reasoning": "No counterpart found on the settlement side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.3}
+{"event": "deterministic_resolved", "order_id": "order_D1AT5YVJJ33S42", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 8d > 2d", "elapsed_s": 0.01}
+{"event": "deterministic_resolved", "order_id": "order_D5PWVWS7TPFJX4", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_D8B2FCJU1CL12T", "predicted_class": "R5", "confidence": 1.0, "reasoning": "Duplicate booking on the ledger side.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.74}
+{"event": "investigated", "order_id": "order_F880TWP5FBKME8", "predicted_class": "R5", "confidence": 1.0, "reasoning": "Duplicate booking on the ledger side.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.65}
+{"event": "investigated", "order_id": "order_FVF4GN3EJ03LMA", "predicted_class": "R4", "confidence": 1.0, "reasoning": "There are two settlement rows for the same order_id.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.94}
+{"event": "deterministic_resolved", "order_id": "order_HAF1U2VVLHFJSW", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 5d > 2d", "elapsed_s": 0.01}
+{"event": "deterministic_resolved", "order_id": "order_KRXXK39JBDDGL1", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_M4R5ZZT4EZEZMU", "predicted_class": "R5", "confidence": 1.0, "reasoning": "Duplicate booking on the ledger side", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.64}
+{"event": "investigated", "order_id": "order_MN9NGF9R3E9PGN", "predicted_class": "R4", "confidence": 1.0, "reasoning": "There are two settlement rows for the same order_id.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 2.04}
+{"event": "investigated", "order_id": "order_NF5PXWSPMXC7YG", "predicted_class": "R4", "confidence": 0.8, "reasoning": "Split payout with two settlement rows.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 0.80 >= threshold 0.75", "elapsed_s": 1.76}
+{"event": "deterministic_resolved", "order_id": "order_P0BRCRA6ZEYZ49", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 8d > 2d", "elapsed_s": 0.01}
+{"event": "deterministic_resolved", "order_id": "order_PJZCD64UFNML0S", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_PLDLF8JYP3WRSB", "predicted_class": "R4", "confidence": 0.95, "reasoning": "Split settlement with two rows.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 0.95 >= threshold 0.75", "elapsed_s": 1.75}
+{"event": "investigated", "order_id": "order_R843RJL137LKQP", "predicted_class": "R5", "confidence": 0.9, "reasoning": "Duplicate booking on the ledger side.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 0.90 >= threshold 0.75", "elapsed_s": 1.74}
+{"event": "investigated", "order_id": "order_SUVYCYD3A45YSY", "predicted_class": "R4", "confidence": 1.0, "reasoning": "One ledger entry but two settlement rows.", "tool_calls": 0, "fallback": false, "gate_status": "auto_resolved", "gate_reason": "confidence 1.00 >= threshold 0.75", "elapsed_s": 1.86}
+{"event": "deterministic_resolved", "order_id": "order_T2V10XVKKQE30B", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_UGTRB3Y4YVQZYT", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_UV6348TR6PB3CR", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 5d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_VF0Y6P4N5X9N8C", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_VNFJUEWQRCDK6J", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 6d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_VV7TFAT706BVY9", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 3d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_VZHE9JLQ5PJ1BM", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 9d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_W61EHTPXR6EYXM", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 4d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_WF820JL0Q221BH", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 4d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_XM6M9BNZNYHPA3", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 9d > 2d", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_XNR7U9K93R81W7", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "deterministic_resolved", "order_id": "order_XSFULA8X9FRKNB", "predicted_class": "R3", "gate_status": "auto_resolved", "gate_reason": "deterministic: ledger status == partially_refunded", "elapsed_s": 0.0}
+{"event": "investigated", "order_id": "order_YERJL77E0BPD5F", "predicted_class": "R6", "confidence": 1.0, "reasoning": "No counterpart found on either side.", "tool_calls": 0, "fallback": false, "gate_status": "needs_review", "gate_reason": "R6 is never auto-resolvable", "elapsed_s": 1.41}
+{"event": "deterministic_resolved", "order_id": "order_ZK5C4AG2EEG288", "predicted_class": "R2", "gate_status": "auto_resolved", "gate_reason": "deterministic: diff 0.00 within tolerance, lag 3d > 2d", "elapsed_s": 0.0}
+{"event": "run_end"}

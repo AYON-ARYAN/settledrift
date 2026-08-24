@@ -1,0 +1,107 @@
+{
+  "total_orders": 120,
+  "clean_exact": 60,
+  "clean_tolerance": 14,
+  "unresolved_by_matcher": 46,
+  "agent_auto_resolved": 39,
+  "agent_needs_review": 7,
+  "match_rate": 0.9417,
+  "rupees_reconciled": 1336382.17,
+  "overall_classification_accuracy": 1.0,
+  "per_class": {
+    "R1": {
+      "predicted_count": 14,
+      "true_count": 14,
+      "correct": 14,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R2": {
+      "predicted_count": 18,
+      "true_count": 18,
+      "correct": 18,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R3": {
+      "predicted_count": 10,
+      "true_count": 10,
+      "correct": 10,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R4": {
+      "predicted_count": 6,
+      "true_count": 6,
+      "correct": 6,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R5": {
+      "predicted_count": 5,
+      "true_count": 5,
+      "correct": 5,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "R6": {
+      "predicted_count": 7,
+      "true_count": 7,
+      "correct": 7,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "CLEAN": {
+      "predicted_count": 60,
+      "true_count": 60,
+      "correct": 60,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "exception_count": 7,
+  "exceptions": [
+    {
+      "order_id": "order_22L29MJBZJFL3P",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_4CKAF9839DL8V5",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_54AWTVW783SWDM",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_8NA94MFXX0MK3J",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_CSQMPL68J7ZA97",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_CT1QJZ3URAZFBT",
+      "predicted_class": "R6",
+      "confidence": 0.95,
+      "reason": "R6 is never auto-resolvable"
+    },
+    {
+      "order_id": "order_YERJL77E0BPD5F",
+      "predicted_class": "R6",
+      "confidence": 1.0,
+      "reason": "R6 is never auto-resolvable"
+    }
+  ]
+}
