@@ -65,7 +65,7 @@ The deterministic-first shape is a deliberate echo of [DriftBench](https://githu
 
 Not a full ReAct loop — a single bounded LLM call per order_id, with evidence retrieval capped at one optional read-only tool call (`get_customer_orders`, for confirming a suspected duplicate). It receives **precomputed** evidence (`diff_rupees_expected_vs_actual`, `settlement_lag_days`, row counts) rather than raw rows to do arithmetic on — an early pilot run showed a 3B local model unreliably eyeballing rupee amounts and confidently mislabeling obvious R3/R2 cases, which is exactly why those two ended up deterministic instead of agent-owned. If the model's output isn't parseable JSON or names an invalid class, a rule-based fallback classifies it and marks it `needs_review` — a flaky model can degrade to "ask a human," never to a silently wrong answer.
 
-Runs entirely on local Ollama (`qwen2.5-coder:3b`) by default — **$0 cost, no API key, nothing leaves the machine.** A Gemini free-tier provider is available as a drop-in alternative (`--provider gemini:gemini-2.5-flash`).
+Runs entirely on local Ollama (`qwen2.5-coder:3b`) by default — **$0 cost, no API key, nothing leaves the machine.** A Gemini free-tier provider is available as a drop-in alternative (`--provider gemini:gemini-2.5-flash`), verified on the same 120-transaction corpus: **also 100% classification accuracy**, confirming the deterministic-first design — not prompt-tuning to one model's quirks — is what's actually carrying the result. Output checked in at [`examples/sample_run_gemini/`](examples/sample_run_gemini/).
 
 ## Results (real run, not illustrative)
 
