@@ -117,5 +117,24 @@ def sweep(
     typer.echo(format_sweep_table(points))
 
 
+@app.command()
+def serve(
+    host: str = typer.Option("127.0.0.1", "--host"),
+    port: int = typer.Option(8000, "--port"),
+):
+    """Launch the local web UI: run reconciliation live, watch progress stream in,
+    view the dashboard, download results. Requires `pip install -e ".[web]"`."""
+    try:
+        import uvicorn
+    except ImportError:
+        typer.echo('The web UI needs extra dependencies: pip install -e ".[web]"', err=True)
+        raise typer.Exit(1)
+
+    from settledrift.web.app import app as web_app
+
+    typer.echo(f"SettleDrift web UI: http://{host}:{port}")
+    uvicorn.run(web_app, host=host, port=port, log_level="warning")
+
+
 if __name__ == "__main__":
     app()

@@ -118,13 +118,35 @@ settledrift reconcile --data runs/data --out runs/out --provider ollama:qwen2.5-
 
 # re-print a previous run's report
 settledrift report --out runs/out
+
+# recompute the exception list / dashboard from an existing report.json
+settledrift exceptions --out runs/out
+settledrift dashboard --out runs/out
+
+# see the automation-vs-safety tradeoff at other confidence thresholds
+# (zero new LLM calls — reuses the confidences already recorded in journal.jsonl)
+settledrift sweep --out runs/out --data runs/data
 ```
 
 ```bash
-pytest  # 25 tests: matcher correctness, generator invariants, gate policy,
+pytest  # 39 tests: matcher correctness, generator invariants, gate policy,
         # agent tool-call/fallback paths (mocked provider, no Ollama needed),
-        # deterministic-shortcut correctness, reporting correctness
+        # deterministic-shortcut correctness, reporting correctness,
+        # dashboard rendering + escaping, exceptions CSV, threshold sweep,
+        # and the full web UI request flow (stubbed provider, no Ollama needed)
 ```
+
+### Web UI
+
+For a live demo instead of the CLI — generate a corpus, watch the reconciliation stream in order-by-order, then view the dashboard, right from the browser:
+
+```bash
+pip install -e ".[web]"
+settledrift serve --port 8000
+# open http://127.0.0.1:8000
+```
+
+It's the same `run_reconciliation()` pipeline the CLI calls, running in a background thread per request and streamed to the browser over Server-Sent Events — no new pipeline logic in the web layer, just a queue wired to the existing `progress` callback. Local-only by default (binds `127.0.0.1`); nothing is exposed to the network unless you explicitly pass `--host 0.0.0.0`.
 
 ## Design notes
 
