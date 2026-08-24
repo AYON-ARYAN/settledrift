@@ -8,8 +8,10 @@ import typer
 from settledrift.agent.providers import parse_provider
 from settledrift.dashboard import write_dashboard
 from settledrift.data.generate import generate
+from settledrift.exceptions_export import write_exceptions_csv
 from settledrift.journal import read_journal
 from settledrift.pipeline import run_reconciliation
+from settledrift.sweep import format_sweep_table, sweep_thresholds
 
 app = typer.Typer(add_completion=False)
 
@@ -57,9 +59,11 @@ def reconcile(
 
     journal_rows = read_journal(out_dir / "journal.jsonl")
     write_dashboard(report_dict, journal_rows, out_dir / "dashboard.html", title=f"SettleDrift · {data_dir.name}")
+    n_exceptions = write_exceptions_csv(report_dict, out_dir / "exceptions.csv")
 
     typer.echo(json.dumps(report_dict, indent=2))
     typer.echo(f"\nDashboard: {out_dir / 'dashboard.html'}")
+    typer.echo(f"Exceptions CSV ({n_exceptions} rows): {out_dir / 'exceptions.csv'}")
 
 
 @app.command()
@@ -83,6 +87,34 @@ def dashboard(out_dir: Path = typer.Option(Path("runs/out"), "--out"), title: st
     journal_rows = read_journal(out_dir / "journal.jsonl")
     write_dashboard(report_dict, journal_rows, out_dir / "dashboard.html", title=title)
     typer.echo(f"Dashboard: {out_dir / 'dashboard.html'}")
+
+
+@app.command()
+def exceptions(out_dir: Path = typer.Option(Path("runs/out"), "--out")):
+    """(Re)generate exceptions.csv from an existing report.json."""
+    report_path = out_dir / "report.json"
+    if not report_path.exists():
+        typer.echo(f"No report at {report_path}. Run `settledrift reconcile` first.", err=True)
+        raise typer.Exit(1)
+    report_dict = json.loads(report_path.read_text())
+    n = write_exceptions_csv(report_dict, out_dir / "exceptions.csv")
+    typer.echo(f"Exceptions CSV ({n} rows): {out_dir / 'exceptions.csv'}")
+
+
+@app.command()
+def sweep(
+    out_dir: Path = typer.Option(Path("runs/out"), "--out", help="Directory with journal.jsonl from a prior reconcile"),
+    data_dir: Path = typer.Option(Path("runs/data"), "--data", help="Directory with ground_truth.jsonl (optional)"),
+):
+    """Recompute the confidence gate at multiple thresholds from an already-completed
+    run's journal.jsonl — zero new LLM calls, shows the automation-vs-safety tradeoff."""
+    journal_path = out_dir / "journal.jsonl"
+    if not journal_path.exists():
+        typer.echo(f"No journal at {journal_path}. Run `settledrift reconcile` first.", err=True)
+        raise typer.Exit(1)
+    gt_path = data_dir / "ground_truth.jsonl"
+    points = sweep_thresholds(journal_path, gt_path if gt_path.exists() else None)
+    typer.echo(format_sweep_table(points))
 
 
 if __name__ == "__main__":

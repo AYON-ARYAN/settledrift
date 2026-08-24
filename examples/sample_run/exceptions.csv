@@ -1,0 +1,8 @@
+order_id,predicted_class,confidence,reason
+order_22L29MJBZJFL3P,R6,0.95,R6 is never auto-resolvable
+order_4CKAF9839DL8V5,R6,1.0,R6 is never auto-resolvable
+order_54AWTVW783SWDM,R6,1.0,R6 is never auto-resolvable
+order_8NA94MFXX0MK3J,R6,1.0,R6 is never auto-resolvable
+order_CSQMPL68J7ZA97,R6,0.95,R6 is never auto-resolvable
+order_CT1QJZ3URAZFBT,R6,0.95,R6 is never auto-resolvable
+order_YERJL77E0BPD5F,R6,1.0,R6 is never auto-resolvable

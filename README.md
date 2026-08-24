@@ -87,6 +87,21 @@ Full report and per-decision journal for this exact run are checked in at [`exam
 
 Each example run also has a self-contained `dashboard.html` — live on GitHub Pages: [120-transaction run](https://ayon-aryan.github.io/settledrift/examples/sample_run/dashboard.html), [1,000-transaction run](https://ayon-aryan.github.io/settledrift/examples/sample_run_1k/dashboard.html). No server or JS framework involved — it's a static file, opens directly from disk too. `settledrift reconcile` generates one automatically; regenerate one from an existing `report.json` with `settledrift dashboard --out <dir>`.
 
+`settledrift reconcile` also writes `exceptions.csv` — the actual hand-off artifact a finance controller needs, not a JSON blob (checked in: [120-run](examples/sample_run/exceptions.csv), [1,000-run](examples/sample_run_1k/exceptions.csv)).
+
+**Confidence gate calibration.** `settledrift sweep` re-applies the gate's threshold rule to an already-completed run's recorded confidences — zero new LLM calls — to show the automation-vs-safety tradeoff directly:
+
+```
+threshold |  auto | review | automation % | wrong-but-auto
+----------------------------------------------------------
+     0.50 |    11 |      7 |        61.1% |              0
+     0.75 |    11 |      7 |        61.1% |              0   <- default
+     0.90 |    10 |      8 |        55.6% |              0
+     1.00 |     8 |     10 |        44.4% |              0
+```
+
+(120-transaction run; the 1,000-transaction run shows the same shape — see [`examples/sample_run_1k/`](examples/sample_run_1k/).) The `wrong-but-auto` column — the count of auto-resolved decisions that were actually wrong against ground truth — is **zero at every threshold from 0.5 to 1.0**, on both runs. That's not the gate being cautious; it means the model's confidence score was well-calibrated on this corpus even at its most permissive setting. Raising the threshold trades automation rate for safety margin with no error reduction to show for it here — the honest reading is "this dial matters more on a harder or more adversarial corpus than it does on this one," which is exactly the kind of claim a threshold sweep lets you check instead of assume.
+
 **This did not work on the first try**, and the honest failure path is part of the design, not hidden from it: the first end-to-end run scored 63% overall accuracy, because (a) a reporting bug conflated tolerance-matched R1 orders with clean matches, and (b) the raw-arithmetic evidence bundle led the 3B model to confidently (confidence 1.0) mislabel obvious R3 partial-refunds and R2 timing-lags as R1 rounding drift. Fixing (a) was a straightforward bug fix. Fixing (b) meant recognizing those two classes didn't need a model at all — precomputing the same arithmetic the model was getting wrong and resolving it deterministically, which is what pushed accuracy to 100% and cut LLM calls by 85%. That's the "AI judgment" and "failure recovery" story in one repo: know when the model is the right tool, and know when it demonstrably isn't.
 
 ## Usage
